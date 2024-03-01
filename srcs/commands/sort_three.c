@@ -6,11 +6,11 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:42:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/02/29 18:16:35 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/03/01 14:19:38 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../headers/commands.h"
 
 void	sort_three(t_stack_node **a)
 {

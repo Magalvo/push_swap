@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   limits.c                                           :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 18:06:17 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/01 14:20:08 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/03/01 14:58:00 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/03/01 14:58:22 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/utils.h"
 
-t_stack_node	*find_last(t_stack_node *stack)
+static long	ft_atol(const char *str)
 {
-	if(!stack)
-		return (NULL);
-}
+	long	num;
+	int		isneg;
+	int		i;
 
-t_stack_node	*find_min(t_stack_node *stack)
-{
-
-}
-
-t_stack_node	*find_max(t_stack_node *stack)
-{
-	
+	num = 0;
+	isneg = 1;
+	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'
+			|| str[i] == '\n' || str[i] == '\r'
+			|| str[i] == '\v' || str[i] == '\f'))
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		isneg *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = (num * 10) + (str[i] - '0');
+		i++;
+	}
+	return (num * isneg);
 }

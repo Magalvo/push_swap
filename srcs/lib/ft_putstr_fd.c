@@ -1,13 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_stacks.c                                      :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 17:42:28 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/01 14:19:36 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/03/01 15:11:31 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/03/01 15:12:32 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/commands.h"
+#include "../../headers/utils.h"
+
+int	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	return (i);
+}

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:03:49 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/02/29 18:16:57 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:57:41 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "utils.h"
+#include "commands.h"
+#include "lib.h"
 
 typedef struct s_struct_a t_struct_a;
 typedef struct s_struct_b t_struct_b;
