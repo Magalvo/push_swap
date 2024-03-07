@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commands.h                                         :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 14:13:33 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/01 15:57:53 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/03/07 16:50:47 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/03/07 16:51:16 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMANDS_H
-# define COMMANDS_H
+#include "../../includes/push_swap.h"
 
-#include "push_swap.h"
-#include "utils.h"
-#include "lib.h"
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub_s;
+	size_t	s_len;
 
-void	swap(t_stack *stack);
-void	push(t_stack *from, t_stack *to);
-void	rotate(t_stack *stack);
-void	reverse_rotate(t_stack *stack);
-
-#endif
+	s_len = ft_strlen(s);
+	if (start > s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	sub_s = ft_calloc(sizeof(char), len + 1);
+	if (!sub_s)
+		return (NULL);
+	ft_memcpy(sub_s, s + start, len);
+	return ((char *)sub_s);
+}

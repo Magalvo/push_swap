@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 14:11:10 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/01 14:20:04 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/03/06 11:07:15 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/03/07 17:07:28 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/utils.h"
+# include "../../includes/push_swap.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {

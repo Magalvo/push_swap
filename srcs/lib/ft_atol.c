@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 14:58:00 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/01 14:58:22 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/03/04 18:59:43 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/03/06 13:52:04 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/utils.h"
+#include "../../includes/push_swap.h"
 
-static long	ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
 	long	num;
 	int		isneg;

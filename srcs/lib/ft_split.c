@@ -5,60 +5,104 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 13:11:42 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/01 14:20:06 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/03/04 19:02:43 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/03/07 19:33:33 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/utils.h"
 
-static char	**split_free(char **splits)
+#include "../../includes/push_swap.h"
+
+static int	count_words(char *str, char separator)
 {
-	size_t	j;
+	int		count;
+	bool	inside_word;
 
-	j = -1;
-	while (splits[++j])
-		free(splits[j]);
-	free(splits);
-	return (NULL);
-}
-
-static size_t	ft_wordctd(const char *str, char c, char ***splits)
-{
-	size_t	ctd;
-	size_t	i;
-	size_t	start;
-
-	ctd = 0;
-	i = 0;
-	while (str[i])
+	count = 0;
+	while (*str)
 	{
-		while (str[i] == c && str[i])
-			i++;
-		if (str[i])
-			ctd++;
-		start = i;
-		while (str[i] != c && str[i])
-			i++;
-		if (*splits && ctd > 0 && i != start) 
-			(*splits)[ctd - 1] = ft_substr(str, start, i - start);
-		if (*splits && ctd && !(*splits)[ctd - 1])
+		inside_word = false;
+		while (*str == separator && *str)
+			++str;
+		while (*str != separator && *str)
 		{
-			(*splits) = split_free(*splits);
-			return (0);
+			if (!inside_word)
+			{
+				++count;
+				inside_word = true;
+			}
+			++str;
 		}
 	}
-	return (ctd);
+	return (count);
 }
 
-char	**ft_split(char const *s, char c)
+/*
+ * I exploit static variables
+ * which are basically 
+ * "Global private variables"
+ * i can access it only via the get_next_word function
+*/
+static char	*get_next_word(char *str, char separator)
 {
-	char	**splits;
+	static int	cursor = 0;
+	char		*next_str;
+	int			len;
+	int			i;
 
-	splits = NULL;
-	splits = ft_calloc(ft_wordctd(s, c, &splits) + 1, sizeof(char *));
-	if (!splits)
+	len = 0;
+	i = 0;
+	while (str[cursor] == separator)
+		++cursor;
+	while ((str[cursor + len] != separator) && str[cursor + len])
+		++len;
+	next_str = malloc((size_t)len * sizeof(char) + 1);
+	if (NULL == next_str)
 		return (NULL);
-	ft_wordctd(s, c, &splits);
-	return (splits);
+	while ((str[cursor] != separator) && str[cursor])
+		next_str[i++] = str[cursor++];
+	next_str[i] = '\0';
+	return (next_str);
 }
+
+/*
+ * I recreate an argv in the HEAP
+ *
+ * +2 because i want to allocate space
+ * for the "\0" Placeholder and the final NULL
+ *
+ * vector_strings-->[p0]-> "\0" Placeholder to mimic argv
+ * 				 |->[p1]->"Hello"
+ * 				 |->[p2]->"how"
+ * 				 |->[p3]->"Are"
+ * 				 |->[..]->"..""
+ * 				 |->[NULL]
+*/
+char	**ft_split(char *str, char c)
+{
+	int		words_number;
+	char	**vector_strings;
+	int		i;
+
+	i = 0;
+	words_number = count_words(str, c);
+	if (!words_number)
+		exit(1);
+	vector_strings = malloc(sizeof(char *) * (size_t)(words_number + 2));
+	if (NULL == vector_strings)
+		return (NULL);
+	while (words_number-- >= 0)
+	{
+		if (0 == i)
+		{
+			vector_strings[i] = malloc(sizeof(char));
+			if (NULL == vector_strings[i])
+				return (NULL);
+			vector_strings[i++][0] = '\0';
+			continue ;
+		}
+		vector_strings[i++] = get_next_word(str, c);
+	}
+	vector_strings[i] = NULL;
+	return (vector_strings);
+}  	

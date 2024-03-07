@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 15:11:31 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/01 15:12:32 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/03/04 18:57:15 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/03/06 13:52:16 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/utils.h"
+#include "../../includes/push_swap.h"
 
 int	ft_putstr_fd(char *s, int fd)
 {

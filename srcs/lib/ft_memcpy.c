@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 17:42:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/01 14:19:38 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/03/07 16:52:59 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/03/07 16:54:26 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/commands.h"
+#include "../../includes/push_swap.h"
 
-void	sort_three(t_stack_node **a)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	t_stack_node	*biggest_node;
+	unsigned char	*altdest;
+	unsigned char	*altsrc;
 
-	biggest_node = find_max(*a);
-	if (biggest_node == *a)
-		ra(a, false);
-	else if ((*a)->next == biggest_node)
-		rra(a, false);
-	if ((*a)->nbr > (*a)->next->nbr)
-		sa(a,false);
+	altdest = (unsigned char *)dest;
+	altsrc = (unsigned char *)src;
+	if (!altdest && !altsrc)
+		return (NULL);
+	while (n-- > 0)
+	{
+		*altdest = *altsrc;
+		altdest++;
+		altsrc++;
+	}
+	return (dest);
 }

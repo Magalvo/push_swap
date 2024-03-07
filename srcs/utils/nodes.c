@@ -5,44 +5,107 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 15:49:13 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/01 15:55:05 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/03/04 19:02:02 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/03/07 16:44:35 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/utils.h"
+#include "../../includes/push_swap.h"
 
-t_stack_node    *find_last_node(t_stack_node *head)
+void	current_index(t_stack_node *stack)
 {
-    if(!head)
-        return (NULL);
-    while (head->next);
-        head = head->next;
-    return (head);
+	int	i;
+	int	median;
+
+	i = 0;
+	if(!stack)
+		return ;
+	median = stack_len(stack) / 2;
+	while (stack)
+	{
+		stack->index = i;
+		if (i <= median)
+			stack->above_median = true;
+		else
+			stack->above_median = false;
+		stack = stack->next;
+		++i;
+	}
 }
 
-void    append_node(t_stack_node **stack, int nbr)
+static void set_target_a(t_stack_node *a, t_stack_node *b)
 {
-    t_stack_node    *node;
-    t_stack_node    *last_node;
+	t_stack_node	*current_b;
+	t_stack_node 	*target_node;
+	long			best_match_index;
 
-    if (!stack)
-        return ;
-    node = ft_calloc(sizeof(t_stack_node), 1);
-    if (!node)
-        return ;
-    node->next = NULL;
-    node->value = nbr;
-    if (!*stack)
-    {
-        *stack = node;
-        node->prev = NULL;
-    }
-    else
-    {
-        last_node = find_last_node(*stack);
-        last_node->next = node;
-        node->prev = last_node;
-    }
-        
+	while (a)
+	{
+		best_match_index = LONG_MIN;
+		current_b = b;
+		while (current_b)
+		{
+			if (current_b->value < a->value
+				&& current_b->value > best_match_index)
+				{
+					best_match_index = current_b->value;
+					target_node = current_b;
+				}
+				current_b = current_b->next;
+		}
+		if (best_match_index == LONG_MIN)
+			a->target_node = find_max(b);
+		else
+			a->target_node = target_node;
+		a = a->next;
+	}
+}
+
+static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
+{
+	int	len_a;
+	int	len_b;
+
+	len_a = stack_len(a);
+	len_b = stack_len(b);
+	while (a)
+	{
+		a->cost = a->index;
+		if (!(a->above_median))
+			a->cost = len_a - (a->index);
+		if (a->target_node->above_median)
+			a->cost += a->target_node->index;
+		else 
+			a->cost += len_b - (a->target_node->index);
+		a = a->next;
+	}
+}
+
+void	set_cheapest(t_stack_node *stack)
+{
+	long			cheapest_value;
+	t_stack_node	*cheapest_node;
+
+	if (!stack)
+		return ;
+	cheapest_value = LONG_MAX;
+	while (stack)
+	{
+		if (stack->cost < cheapest_value)
+		{
+			cheapest_value = stack->cost;
+			cheapest_node = stack;
+		}
+		stack = stack->next;
+	}
+	cheapest_node->cheapest = true;
+}
+
+void	init_nodes_a(t_stack_node *a, t_stack_node *b)
+{
+	current_index(a);
+	current_index(b);
+	set_target_a(a, b);
+	cost_analysis_a(a, b);
+	set_cheapest(a);
 }

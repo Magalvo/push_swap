@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 14:11:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/01 14:19:58 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/03/05 15:02:22 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/03/07 17:05:43 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/utils.h"
+# include <stdlib.h>
+# include "../../includes/push_swap.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

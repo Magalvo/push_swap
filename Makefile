@@ -5,25 +5,27 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/29 17:43:19 by dde-maga          #+#    #+#              #
-#    Updated: 2024/02/29 17:49:14 by dde-maga         ###   ########.fr        #
+#    Created: 2024/03/05 16:55:31 by dde-maga          #+#    #+#              #
+#    Updated: 2024/03/07 17:11:24 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRC_UTILS = ft_split.c
-SRC_COMMANDS = push.c rev_rotate.c rotate.c sort_stacks.c sort_three.c \
-				swap.c
-
+SRC_UTILS = errors.c limits.c lists.c nodes.c stack_sorting.c \
+			tiny_sort.c moves.c
+SRC_COMMANDS = push.c reverse_rotate.c rotate.c swap.c
+SRC_LIB = ft_atol.c ft_calloc.c ft_putstr_fd.c ft_split.c \
+			ft_substr.c ft_strlen.c ft_strdup.c ft_memcpy.c \
+			ft_memset.c
 
 SRC =	$(addprefix ./srcs/commands/, $(SRC_COMMANDS)) \
-		$(addprefix ./srcs/custom/get_next_line/, $(SRC_UTILS)) \
-
+		$(addprefix ./srcs/utils/, $(SRC_UTILS)) \
+		$(addprefix ./srcs/lib/, $(SRC_LIB))
 
 
 SRCOBJ = obj/
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 OBJ = $(addprefix $(SRCOBJ), $(SRC:./srcs/%.c=%.o))
 
@@ -31,7 +33,7 @@ OBJ = $(addprefix $(SRCOBJ), $(SRC:./srcs/%.c=%.o))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@${CC} ${CFLAGS} -g3 main.c ${OBJ} -o $(NAME)
+	@${CC} ${CFLAGS} push_swap.c ${OBJ} -o $(NAME)
 
 $(SRCOBJ)%.o: srcs/%.c
 	@mkdir -p $(SRCOBJ)
