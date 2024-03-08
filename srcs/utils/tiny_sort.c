@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:43:47 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/07 16:47:55 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:24:33 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ void	sort_three(t_stack_node **a)
 	if ((*a)->value > (*a)->next->value)
 		sa(a, false);
 }
-

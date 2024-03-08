@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:42:16 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/07 16:47:49 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:34:35 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ void	init_a(t_stack_node	**a, char **av, bool flag)
 		if (nbr > INT_MAX || nbr < INT_MIN)
 			error_free(a, av, flag);
 		if (error_repetition(*a, (int)nbr))
+		{
+			printf("Repetition\n");
 			error_free(a, av, flag);
+		}
 		append_node(a, (int)nbr);
 		i++;
 	}
-	if (flag)
-		free_matrix(av);
 }
 
 t_stack_node	*get_cheapest(t_stack_node *stack)
