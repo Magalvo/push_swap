@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:37 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/07 19:07:34 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:07:58 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,20 @@ void	reverse_rotate_both(t_stack_node **a, t_stack_node **b,
 	{
 		rrr(a, b, false);
 	}
-			
+
+	current_index(*a);
+	current_index(*b);
+}
+
+void	reverse_rotate_both_b(t_stack_node **a, t_stack_node **b,
+								t_stack_node *cheapest_node)
+{
+	while (*a != cheapest_node->target_node
+			&& *b != cheapest_node)
+	{
+		rrr(a, b, false);
+	}
+
 	current_index(*a);
 	current_index(*b);
 }

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:26:16 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/08 18:35:58 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:24:15 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,18 @@ struct s_stack_node
 {
 	int		cost;
 	int 	rank;
-	long	value;
-	long	index;
-	bool	cheapest;
-	bool	above_median;
-	struct	s_stack_node *next;
-	struct	s_stack_node *prev;
-	struct	s_stack_node *target_node;
+
+	int						half;
+	int						quarter;
+	long					value;
+	long					index;
+	bool					cheapest;
+	bool					above_median;
+	t_stack_node			first;
+	t_stack_node			last;
+	struct	s_stack_node 	*next;
+	struct	s_stack_node 	*prev;
+	struct	s_stack_node 	*target_node;
 };
 
 //=====================Commands=====================//
@@ -59,15 +64,22 @@ void			rotate_both(t_stack_node **a, t_stack_node **b,
 								t_stack_node *cheapest_node);
 void			reverse_rotate_both(t_stack_node **a, t_stack_node **b,
 								t_stack_node *cheapest_node);
+void	rotate_both_b(t_stack_node **a, t_stack_node **b,
+						t_stack_node *cheapest_node);
+void reverse_rotate_both_b(t_stack_node **a, t_stack_node **b,
+						   t_stack_node *cheapest_node);
 
-//=======================Moves==========================//
-void			push_prep(t_stack_node **stack, t_stack_node *top_node, char stk_name);
+	//=======================Moves==========================//
+	void push_prep(t_stack_node **stack, t_stack_node *top_node, char stk_name);
 void			move_a_to_b(t_stack_node **a, t_stack_node **b);
+void			move_b_to_a_fast(t_stack_node **a, t_stack_node **b);
 void			move_b_to_a(t_stack_node **a, t_stack_node **b);
 void			min_on_top(t_stack_node **a);
 
 //======================Sort======================//
 void			sort_three(t_stack_node **a);
+void			sort_ten(t_stack_node **a, t_stack_node **b);
+void			fast_sort(t_stack_node **a, t_stack_node **b);
 
 //======================Errors & Cleaning ======================//
 void			error_free(t_stack_node **a, char **argv, bool flag_argc_2);
@@ -106,5 +118,8 @@ char			*ft_substr(char const *s, unsigned int start, size_t len);
 int				ft_putstr_fd(char *s, int fd);
 size_t			ft_strlen(const char *s);
 long			ft_atol(const char *str);
+
+void	print_list(t_stack_node *stack);
+void	print_ranks(t_stack_node *stack);
 
 #endif

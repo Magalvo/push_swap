@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:37:17 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/03/08 18:34:01 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:45:20 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int ac, char **av)
 	if (ac==2)
 		av = ft_split(av[1], ' ');
 	init_a(&a, av + 1, ac == 2);
-	ranking(&a);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
@@ -31,10 +30,10 @@ int	main(int ac, char **av)
 		else if (stack_len(a) == 3)
 			sort_three(&a);
 		/* else if (stack_len(a) <= 75)
-			turk(&a, &b); */
+			sort_stacks(&a, &b); */
 		else
-			sort_stacks(&a, &b);
+			fast_sort(&a, &b);
 	}
 	free_stack(&a, av, ac == 2);
-	return (0);	
+	return (0);
 }
